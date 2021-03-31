@@ -23,21 +23,19 @@ namespace InvoiceDataEnelConsole.Validator
 
             if (model.Cep.ToString().Length != 8)
             {
-                // throw new ArgumentException("");
+                Erro.Error = " incompleto";
+                Erro.Line = model.Posicao;
+                Erro.Field = "Campo cep";
+
+                ListaErros.Add(Erro);
             }
 
-            //Regex regex = new Regex(@"[^\d]");
-            //Match match = regex.Match(model.Cliente);
-            //if (match.Success)
-            //{
-            //    Console.WriteLine(match.Value);
-            //}
 
             if (model.NmCasa.Length == 0)
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Numero";
 
                 ListaErros.Add(Erro);
             }
@@ -46,7 +44,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Região";
 
                 ListaErros.Add(Erro);
             }
@@ -55,7 +53,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Dia";
 
                 ListaErros.Add(Erro);
             }
@@ -64,7 +62,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Mês";
 
                 ListaErros.Add(Erro);
             }
@@ -73,7 +71,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Ano";
 
                 ListaErros.Add(Erro);
             }
@@ -82,7 +80,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Hora";
 
                 ListaErros.Add(Erro);
             }
@@ -91,7 +89,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Minuto";
 
                 ListaErros.Add(Erro);
             }
@@ -100,7 +98,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Segundo";
 
                 ListaErros.Add(Erro);
             }
@@ -118,7 +116,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Aparelho";
 
                 ListaErros.Add(Erro);
             }
@@ -127,7 +125,7 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Kw";
 
                 ListaErros.Add(Erro);
             }
@@ -136,10 +134,17 @@ namespace InvoiceDataEnelConsole.Validator
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Custo";
 
                 ListaErros.Add(Erro);
             }
+
+            //Regex regex = new Regex(@"[^\d]");
+            //Match match = regex.Match(model.Cliente);
+            //if (match.Success)
+            //{
+            //    Console.WriteLine(match.Value);
+            //}
 
 
             return ListaErros;
