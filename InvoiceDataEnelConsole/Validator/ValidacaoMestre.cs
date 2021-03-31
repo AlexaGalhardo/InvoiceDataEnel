@@ -7,46 +7,43 @@ namespace InvoiceDataEnelConsole.Validator
 {
     class ValidacaoMestre
     {
+        RegexLib rx = new RegexLib();
         public List<Model.RecordError> Validar(Model.InvoiceData model)
         {
             List<Model.RecordError> ListaErros = new List<Model.RecordError>();
             Model.RecordError Erro = new Model.RecordError();
 
-            if (model.Cliente.Length != 10)
+                
+            if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente) )
+            {
+                Erro.Error = "Cliente Inválido";
+                Erro.Line = model.Posicao;
+                Erro.Field = "Campo codigo do cliente.";
+
+                ListaErros.Add(Erro);
+            }
+            
+            if(!rx.IsMatchNumeros(model.Cep.ToString()))
+            {
+               Erro.Error = " Inválido";
+               Erro.Line = model.Posicao;
+               Erro.Field = "Campo CEP";
+            }
+
+            if (!String.IsNullOrEmpty(model.NmCasa))
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Número da casa.";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Cep.ToString().Length != 8)
-            {
-                // throw new ArgumentException("");
-            }
-
-            //Regex regex = new Regex(@"[^\d]");
-            //Match match = regex.Match(model.Cliente);
-            //if (match.Success)
-            //{
-            //    Console.WriteLine(match.Value);
-            //}
-
-            if (model.NmCasa.Length == 0)
+            if (!String.IsNullOrEmpty(model.Regiao))
             {
                 Erro.Error = " incompleto";
                 Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
-
-                ListaErros.Add(Erro);
-            }
-
-            if (model.Regiao == " ")
-            {
-                Erro.Error = " incompleto";
-                Erro.Line = model.Posicao;
-                Erro.Field = "Campo codigo do cliente";
+                Erro.Field = "Campo Região.";
 
                 ListaErros.Add(Erro);
             }
@@ -144,5 +141,8 @@ namespace InvoiceDataEnelConsole.Validator
 
             return ListaErros;
         }
+
+  
+        
     }
 }
