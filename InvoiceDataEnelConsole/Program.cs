@@ -15,7 +15,20 @@ namespace InvoiceDataEnelConsole
             List<Model.InvoiceData> listaModels =  InvoiceValidatorManager(invoices);
             
         }
+        //public List<Model.RecordError> Forfalse(List<Model.InvoiceData> linha, int posicao)
+        //{
+        //    List<Model.RecordError> ListaErros = new List<Model.RecordError>();
 
+          
+
+        //    if (linha.Count <= posicao)
+        //    {
+        //         ListaErros = Validator.ValidacaoMestre(linha[posicao]);
+        //        return ListaErros Forfalse(linha, posicao + 1);
+        //    }
+        //    return ListaErros;
+
+        //}
 
         public static List<string> FileManager (string path)
         {
