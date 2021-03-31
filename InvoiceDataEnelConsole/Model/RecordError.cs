@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InvoiceDataEnelConsole.Models
+namespace InvoiceDataEnelConsole.Model
 {
-    public partial class RecordError
+    public class RecordError
     {
         public string Error { get; set; }
         public int Line { get; set; }

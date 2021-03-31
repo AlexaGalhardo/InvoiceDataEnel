@@ -23,7 +23,5 @@ namespace InvoiceDataEnelConsole.Model
         public int Kw { get; set; }
         public decimal Custo { get; set; }
 
-
-
     }
 }
