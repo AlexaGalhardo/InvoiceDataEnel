@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System.Collections.Generic;
+using System;
 
 namespace InvoiceDataEnelConsole
 {
@@ -10,12 +12,12 @@ namespace InvoiceDataEnelConsole
             string path = Console.ReadLine();
 
             List<string> invoices = FileManager(path);
-            InvoiceValidatorManager(invoices);
+           // InvoiceValidatorManager(invoices);
             
         }
 
 
-        public List<string> FileManager (string path)
+        public static List<string> FileManager (string path)
         {
             string line;
             List<string> invoices = new List<string>();

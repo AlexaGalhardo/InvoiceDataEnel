@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InvoiceDataEnelConsole.Model
 {
-    public class Modelo
+    public class InvoiceData
     {
         public int Posicao { get; set; }
         public int Cliente { get; set; }
