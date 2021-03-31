@@ -56,7 +56,7 @@ namespace InvoiceDataEnelConsole
                 if (invoice.Length <= 95)
                 {
                     Model.InvoiceData model = new Model.InvoiceData();
-                    model.Posicao =+ 1;
+                    model.Posicao =pos + 1;
                     model.Cliente = (invoice.Substring(0, 10).PadLeft(10, '0'));
                     model.Cep = Convert.ToUInt32(invoice.Substring(10, 8));
                     model.NmCasa = invoice.Substring(18, 5).PadLeft(5, '0');
