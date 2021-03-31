@@ -7,7 +7,7 @@ namespace InvoiceDataEnelConsole.Model
     public class InvoiceData
     {
         public int Posicao { get; set; }
-        public int Cliente { get; set; }
+        public string Cliente { get; set; }
         public uint Cep { get; set; }
         public string NmCasa { get; set; }
         public string Complemento { get; set; }
