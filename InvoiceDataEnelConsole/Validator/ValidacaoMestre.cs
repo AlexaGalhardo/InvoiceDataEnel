@@ -7,23 +7,25 @@ namespace InvoiceDataEnelConsole.Validator
 {
     class ValidacaoMestre
     {
-        public List<Model.RecordError> Validar(Model.InvoiceData model)
+        public static List<Model.RecordError> Validar(Model.InvoiceData model)
         {
+            RegexLib rx = new RegexLib();
+
             List<Model.RecordError> ListaErros = new List<Model.RecordError>();
             Model.RecordError Erro = new Model.RecordError();
 
-            if (model.Cliente.Length != 10)
+            if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido ";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo codigo do cliente";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Cep.ToString().Length != 8)
+            if (model.Cep.ToString().Length != 8 || ! rx.IsMatchNumeros(model.Cep.ToString()) )
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo cep";
 
@@ -31,122 +33,113 @@ namespace InvoiceDataEnelConsole.Validator
             }
 
 
-            if (model.NmCasa.Length == 0)
+            if (model.NmCasa == "00000")
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Numero";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Regiao == " ")
+            if (! String.IsNullOrEmpty(model.Regiao))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Região";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Dia.ToString().Length != 2 || model.Dia.ToString() == "00")
+            if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Dia";
 
                 ListaErros.Add(Erro);
             }
 
-            if(model.Mes == "" )
+            if(!String.IsNullOrEmpty(model.Mes) || !rx.IsMatchLetras(model.Mes))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Mês";
 
                 ListaErros.Add(Erro);
             }
 
-            if(model.Ano == 0000)
+            if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Ano";
 
                 ListaErros.Add(Erro);
             }
 
-            if(model.Hora == 00)
+            if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Hora";
 
                 ListaErros.Add(Erro);
             }
 
-            if(model.Minuto == 00)
+            if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = " Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Minuto";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Segundo == 00)
+            if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Segundo";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Medidor == "")
+            if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo codigo do cliente";
 
                 ListaErros.Add(Erro);
             }
 
-            if(model.Aparelho == 00)
+            if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Aparelho";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Kw == 000000)
+            if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Kw";
 
                 ListaErros.Add(Erro);
             }
 
-            if (model.Custo == 0000000)
+            if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
             {
-                Erro.Error = " incompleto";
+                Erro.Error = "Inválido";
                 Erro.Line = model.Posicao;
                 Erro.Field = "Campo Custo";
 
                 ListaErros.Add(Erro);
             }
-
-            //Regex regex = new Regex(@"[^\d]");
-            //Match match = regex.Match(model.Cliente);
-            //if (match.Success)
-            //{
-            //    Console.WriteLine(match.Value);
-            //}
-
-
             return ListaErros;
         }
     }
