@@ -6,8 +6,15 @@ namespace InvoiceDataEnelConsole.Model
 {
     public class RecordError
     {
-        public string Error { get; set; }
-        public int Line { get; set; }
-        public string Field { get; set; }
+        public string Erro { get; set; }
+        public int Linha { get; set; }
+        public string Campo { get; set; }
+
+
+        public string ShowError()
+        {
+            string erro = Linha + " "+ Erro + " " + Campo;
+            return erro;
+        }
     }
 }

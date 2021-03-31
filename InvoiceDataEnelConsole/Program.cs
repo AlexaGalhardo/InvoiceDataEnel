@@ -9,14 +9,11 @@ namespace InvoiceDataEnelConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Escreva o caminho da sua fatura: ");
-            //string path = @"C:\Users\mayaa\Downloads\'Invoice.data'";///Console.ReadLine();
+            string path =Console.ReadLine();
 
-            //List<string> invoices = FileManager(path);
+            List<string> invoices = FileManager(path);
 
-            List<string> invoices = new List<string>();
-            invoices.Add("00000348340483300100051Bloco 1A apto 44    ##SSP29Março     20211544230007A16894030000840001550");
-            invoices.Add("#####348340483300100051                    ##SSP00Março     20211544230007A16894030000840001550");
-
+            
             List<Model.InvoiceData> listaModels =  InvoiceValidatorManager(invoices);
             List<Model.RecordError> listaerrosPrincipal = new List<Model.RecordError>();
             int posicao = -1;
@@ -26,11 +23,12 @@ namespace InvoiceDataEnelConsole
                 List<Model.RecordError> listaerros = new List<Model.RecordError>();
 
                listaerros = Validator.ValidacaoMestre.Validar(listaModels[posicao + 1]);
-                listaerrosPrincipal = listaerros; 
+                listaerrosPrincipal.AddRange(listaerros); 
 
             }
-            Console.WriteLine(string.Join(",",listaerrosPrincipal));
-
+            listaerrosPrincipal.ForEach(x => Console.WriteLine(x.ShowError()));
+            Console.ReadKey();
+        
         }
 
         //public List<Model.RecordError> Forfalse(List<Model.InvoiceData> linha, int posicao)
@@ -45,9 +43,10 @@ namespace InvoiceDataEnelConsole
         //        return listaerros + Forfalse(linha, posicao + 1);
         //    }
         //    return listaerros;
+        
 
         //}
-       
+
 
         public static List<string> FileManager (string path)
         {
