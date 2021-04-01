@@ -14,6 +14,7 @@ namespace InvoiceDataEnelConsole.Validator
             List<Model.RecordError> ListaErros = new List<Model.RecordError>();
             Model.RecordError Erro = new Model.RecordError();
 
+            
             if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente.ToString()))
             {
                 Erro.Erro = "Inválido ";
@@ -23,7 +24,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (model.Cep.ToString().Length != 8 || ! rx.IsMatchNumeros(model.Cep.ToString()) )
+            else if (model.Cep.ToString().Length != 8 || ! rx.IsMatchNumeros(model.Cep.ToString()) )
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -33,7 +34,7 @@ namespace InvoiceDataEnelConsole.Validator
             }
 
 
-            if (model.NmCasa == "00000")
+            else if (model.NmCasa == "00000")
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -42,7 +43,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (! String.IsNullOrEmpty(model.Regiao))
+            else if (! String.IsNullOrEmpty(model.Regiao))
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -51,7 +52,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
+            else if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -60,7 +61,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if(!String.IsNullOrEmpty(model.Mes) || !rx.IsMatchLetras(model.Mes))
+            else if(!String.IsNullOrEmpty(model.Mes) || !rx.IsMatchLetras(model.Mes))
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -69,7 +70,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
+            else if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -78,7 +79,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
+            else if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -87,7 +88,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
+            else if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
             {
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -96,7 +97,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
+            else if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -105,7 +106,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
+            else if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -114,7 +115,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
+            else if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -123,7 +124,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
+            else if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -132,7 +133,7 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
+             else if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
             {
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;

@@ -16,17 +16,18 @@ namespace InvoiceDataEnelConsole
             
             List<Model.InvoiceData> listaModels =  InvoiceValidatorManager(invoices);
             List<Model.RecordError> listaerrosPrincipal = new List<Model.RecordError>();
+            List<Model.RecordError> listaerros = new List<Model.RecordError>();
             int posicao = -1;
 
             foreach(Model.InvoiceData arquivo in listaModels)
             {
-                List<Model.RecordError> listaerros = new List<Model.RecordError>();
+               
 
                listaerros = Validator.ValidacaoMestre.Validar(listaModels[posicao + 1]);
-                listaerrosPrincipal.AddRange(listaerros); 
+                listaerros.AddRange(listaerros); 
 
             }
-            listaerrosPrincipal.ForEach(x => Console.WriteLine(x.ShowError()));
+            listaerros.ForEach(x => Console.WriteLine(x.ShowError()));
             Console.ReadKey();
         
         }
@@ -74,10 +75,10 @@ namespace InvoiceDataEnelConsole
                 if (invoice.Length <= 95)
                 {
                     Model.InvoiceData model = new Model.InvoiceData();
-                    model.Posicao =pos + 1;
+                    model.Posicao = pos +=1 ;
                     string teste = invoice.Substring(0, 10).PadLeft(10, '0');
                     model.Cliente = invoice.Substring(0,10).PadLeft(10, '0');
-                    model.Cep = Convert.ToUInt32(invoice.Substring(10, 8));
+                    model.Cep = invoice.Substring(10, 5)+ "-" +invoice.Substring(14,3);
                     model.NmCasa = invoice.Substring(18, 5).PadLeft(5, '0');
                     model.Complemento = invoice.Substring(23, 20).PadRight(20, ' ');
                     model.Regiao = invoice.Substring(43, 5).PadLeft(5, '#');
