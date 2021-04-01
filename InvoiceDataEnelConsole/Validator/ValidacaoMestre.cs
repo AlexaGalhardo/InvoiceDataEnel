@@ -12,11 +12,12 @@ namespace InvoiceDataEnelConsole.Validator
             RegexLib rx = new RegexLib();
 
             List<Model.RecordError> ListaErros = new List<Model.RecordError>();
-            Model.RecordError Erro = new Model.RecordError();
 
             
             if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+            
                 Erro.Erro = "Inválido ";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo codigo do cliente";
@@ -24,8 +25,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (model.Cep.ToString().Length != 8 || ! rx.IsMatchNumeros(model.Cep.ToString()) )
+             if (model.Cep.Length != 9 || ! rx.IsMatchCep(model.Cep))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo cep";
@@ -34,8 +37,10 @@ namespace InvoiceDataEnelConsole.Validator
             }
 
 
-            else if (model.NmCasa == "00000")
+             if (model.NmCasa == "00000")
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Numero";
@@ -43,8 +48,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (! String.IsNullOrEmpty(model.Regiao))
+            if ( String.IsNullOrEmpty(model.Regiao))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Região";
@@ -52,8 +59,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
+            if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Dia";
@@ -61,8 +70,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if(!String.IsNullOrEmpty(model.Mes) || !rx.IsMatchLetras(model.Mes))
+            if(String.IsNullOrEmpty(model.Mes))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Mês";
@@ -70,8 +81,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
+            if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Ano";
@@ -79,8 +92,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
+            if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Hora";
@@ -88,8 +103,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
+            if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Minuto";
@@ -97,8 +114,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
+            if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Segundo";
@@ -106,8 +125,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
+            if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo codigo do cliente";
@@ -115,8 +136,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
+            if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Aparelho";
@@ -124,8 +147,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-            else if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
+            if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Kw";
@@ -133,8 +158,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-             else if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
+             if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
             {
+                Model.RecordError Erro = new Model.RecordError();
+
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
                 Erro.Campo = "Campo Custo";

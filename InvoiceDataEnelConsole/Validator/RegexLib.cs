@@ -19,6 +19,12 @@ namespace InvoiceDataEnelConsole.Validator
             return Regex.IsMatch(resp, er);
         }
 
+        public bool IsMatchCep(string resp)
+        {
+            string er = @"^\d{5}-\d{3}$";
+            return Regex.IsMatch(resp, er);
+        }
+
 
     }
 }
