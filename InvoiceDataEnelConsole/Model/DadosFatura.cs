@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InvoiceDataEnelConsole.Model
+namespace DadosFaturaEnelConsole.Model
 {
-    public class InvoiceData
+    public class DadosFatura
     {
         public int Posicao { get; set; }
         public string Cliente { get; set; }

@@ -3,20 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace InvoiceDataEnelConsole.Validator
+namespace DadosFaturaEnelConsole.Validador
 {
     class ValidacaoMestre
     {
-        public static List<Model.RecordError> Validar(Model.InvoiceData model)
-        {
+        public static List<Model.RegistroErro> Validar(Model.DadosFatura model)
+        {   // ESCOPO ESTÁTICO - O CORPO DA FUNÇÃO É EXECUTADO NO AMBEINTE DA DEFINIÇÃO DA FUNÇÃO
             RegexLib rx = new RegexLib();
 
-            List<Model.RecordError> ListaErros = new List<Model.RecordError>();
+            List<Model.RegistroErro> ListaErros = new List<Model.RegistroErro>();
 
-            
+            //----------- Validação Cliente -----------
             if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
             
                 Erro.Erro = "Inválido ";
                 Erro.Linha = model.Posicao;
@@ -24,10 +24,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-             if (model.Cep.Length != 9 || ! rx.IsMatchCep(model.Cep))
+            //----------- Validação do Cep -----------
+            if (model.Cep.Length != 9 || ! rx.IsMatchCep(model.Cep))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -36,10 +36,10 @@ namespace InvoiceDataEnelConsole.Validator
                 ListaErros.Add(Erro);
             }
 
-
-             if (model.NmCasa == "00000")
+            //----------- Validação do NmCasa -----------
+            if (model.NmCasa == "00000")
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -47,10 +47,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
+            //----------- Validação da Região -----------
             if ( String.IsNullOrEmpty(model.Regiao))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -58,10 +58,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
+            //----------- Validação do Dia -----------
             if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -69,10 +69,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-            if(String.IsNullOrEmpty(model.Mes))
+            //----------- Validação do Mês -----------
+            if (String.IsNullOrEmpty(model.Mes))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -80,10 +80,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-            if(model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
+            //----------- Validação do Ano -----------
+            if (model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -91,10 +91,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-            if(model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
+            //----------- Validação da Hora -----------
+            if (model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -102,10 +102,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-            if(model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
+            //----------- Validação do Minuto -----------
+            if (model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = " Inválido";
                 Erro.Linha = model.Posicao;
@@ -113,10 +113,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
+            //----------- Validação do Segundo -----------
             if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -124,21 +124,21 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-            if (model.Medidor == "0000000000" || !rx.IsMatchNumeros(model.Medidor.ToString()))
+            //----------- Validação do Medidor -----------
+            if (model.Medidor == "0000000000" )
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo codigo do cliente";
+                Erro.Campo = "Campo Medidor";
 
                 ListaErros.Add(Erro);
             }
-
-            if(model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
+            //----------- Validação do Aparelho -----------
+            if (model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -146,10 +146,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
+            //----------- Validade do KW -----------
             if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
@@ -157,10 +157,10 @@ namespace InvoiceDataEnelConsole.Validator
 
                 ListaErros.Add(Erro);
             }
-
-             if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
+            //----------- Validação do custo -----------
+            if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
             {
-                Model.RecordError Erro = new Model.RecordError();
+                Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
