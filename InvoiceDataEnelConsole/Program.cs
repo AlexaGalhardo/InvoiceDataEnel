@@ -9,27 +9,26 @@ namespace InvoiceDataEnelConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Escreva o caminho da sua fatura: ");
-            string path =Console.ReadLine();
+            string path = Console.ReadLine();
 
             List<string> invoices = FileManager(path);
 
-            
-            List<Model.InvoiceData> listaModels =  InvoiceValidatorManager(invoices);
+
+            List<Model.InvoiceData> listaModels = InvoiceValidatorManager(invoices);
             List<Model.RecordError> listaerrosPrincipal = new List<Model.RecordError>();
-            List<Model.RecordError> listaerros = new List<Model.RecordError>();
             int posicao = -1;
 
-            foreach(Model.InvoiceData arquivo in listaModels)
+            foreach (Model.InvoiceData arquivo in listaModels)
             {
-               
+                List<Model.RecordError> listaerros = new List<Model.RecordError>();
 
-               listaerros = Validator.ValidacaoMestre.Validar(listaModels[posicao + 1]);
-                listaerros.AddRange(listaerros); 
+
+                listaerrosPrincipal.AddRange(Validator.ValidacaoMestre.Validar(listaModels[posicao + 1]));
 
             }
-            listaerros.ForEach(x => Console.WriteLine(x.ShowError()));
+            listaerrosPrincipal.ForEach(x => Console.WriteLine(x.ShowError()));
             Console.ReadKey();
-        
+
         }
 
         //public List<Model.RecordError> Forfalse(List<Model.InvoiceData> linha, int posicao)
@@ -44,7 +43,7 @@ namespace InvoiceDataEnelConsole
         //        return listaerros + Forfalse(linha, posicao + 1);
         //    }
         //    return listaerros;
-        
+
 
         //}
 
