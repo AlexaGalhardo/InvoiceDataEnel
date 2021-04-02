@@ -14,24 +14,44 @@ namespace DadosFaturaEnelConsole.Validador
             List<Model.RegistroErro> ListaErros = new List<Model.RegistroErro>();
 
             //----------- Validação Cliente -----------
-            if (model.Cliente == "0000000000" || !rx.IsMatchNumeros(model.Cliente.ToString()))
+            if (model.Cliente == "0000000000")
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
-            
-                Erro.Erro = "Inválido ";
+
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo codigo do cliente";
+                Erro.Campo = "Campo: Codigo do cliente";
+
+                ListaErros.Add(Erro);
+            }
+            if (!rx.IsMatchNumeros(model.Cliente.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de Formato: É premitido apenas números";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Código do cliente";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do Cep -----------
-            if (model.Cep.Length != 9 || ! rx.IsMatchCep(model.Cep))
+            if (model.Cep.Length != 9)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo cep";
+                Erro.Campo = "Campo: CEP";
+
+                ListaErros.Add(Erro);
+            }
+            if (!rx.IsMatchCep(model.Cep))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de Formato: É premitido apenas números";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: CEP";
 
                 ListaErros.Add(Erro);
             }
@@ -41,31 +61,41 @@ namespace DadosFaturaEnelConsole.Validador
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Numero";
+                Erro.Campo = "Campo: Número";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação da Região -----------
-            if ( String.IsNullOrEmpty(model.Regiao))
+            if (model.Regiao != "##SSP")
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Região";
+                Erro.Campo = "Campo: Região";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do Dia -----------
-            if (! rx.IsMatchNumeros(model.Dia.ToString()) || model.Dia == 00)
+            if (model.Dia == 00)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Dia";
+                Erro.Campo = "Campo: Dia";
+
+                ListaErros.Add(Erro);
+            }
+            if (!rx.IsMatchNumeros(model.Dia.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de Formato: É premitido apenas números";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Dia";
 
                 ListaErros.Add(Erro);
             }
@@ -74,97 +104,165 @@ namespace DadosFaturaEnelConsole.Validador
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = "Erro: Incompleto";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Mês";
+                Erro.Campo = "Campo: Mês";
 
                 ListaErros.Add(Erro);
             }
+            if (!rx.IsMatchLetras(model.Mes))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de formato: Não é permitido números";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Mês";
+
+                ListaErros.Add(Erro);
+            }
+
             //----------- Validação do Ano -----------
-            if (model.Ano == 0000 || !rx.IsMatchNumeros(model.Ano.ToString()))
+            if (model.Ano <= 2015)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
                 Erro.Erro = "Inválido";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Ano";
+                Erro.Campo = "Campo: Ano";
+
+                ListaErros.Add(Erro);
+            }
+            if (!rx.IsMatchNumeros(model.Ano.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de Formato: É premitido apenas números";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Ano";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação da Hora -----------
-            if (model.Hora == 00 || !rx.IsMatchNumeros(model.Hora.ToString()))
+
+            if (!rx.IsMatchNumeros(model.Hora.ToString()))
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Erro de formato: Só é permitido números.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Hora";
+                Erro.Campo = "Campo: Hora";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do Minuto -----------
-            if (model.Minuto == 00 || !rx.IsMatchNumeros(model.Minuto.ToString()))
+
+            if (!rx.IsMatchNumeros(model.Minuto.ToString()))
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = " Inválido";
+                Erro.Erro = " Erro de formato: Só é permitido números.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Minuto";
+                Erro.Campo = "Campo: Minuto";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do Segundo -----------
-            if (model.Segundo == 00 || !rx.IsMatchNumeros(model.Segundo.ToString()))
+
+            if (!rx.IsMatchNumeros(model.Segundo.ToString()))
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Erro de formato: Só é permitido números.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Segundo";
+                Erro.Campo = "Campo: Segundo";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do Medidor -----------
-            if (model.Medidor == "0000000000" )
+            if (model.Medidor == "0000000000")
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Não pode ser zero.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Medidor";
+                Erro.Campo = "Campo: Medidor";
 
                 ListaErros.Add(Erro);
             }
+
+            //if (!rx.IsMatchNumerosELetras(model.Medidor))
+            //{
+            //    Model.RegistroErro Erro = new Model.RegistroErro();
+
+            //    Erro.Erro = "Erro de formato: Use apenas números e letras.";
+            //    Erro.Linha = model.Posicao;
+            //    Erro.Campo = "Campo: Medidor";
+
+            //    ListaErros.Add(Erro);
+            //}
             //----------- Validação do Aparelho -----------
-            if (model.Aparelho == 00 || !rx.IsMatchNumeros(model.Aparelho.ToString()))
+            if (model.Aparelho == 00)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Não pode ser zero.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Aparelho";
+                Erro.Campo = "Campo: Aparelho";
+
+                ListaErros.Add(Erro);
+            }
+
+            if (!rx.IsMatchNumeros(model.Aparelho.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de formato: Só é permitido números.";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Aparelho";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validade do KW -----------
-            if (model.Kw == 000000 || !rx.IsMatchNumeros(model.Kw.ToString()))
+            if (model.Kw == 000000)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Não pode ser zero.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Kw";
+                Erro.Campo = "Campo: Kw";
+
+                ListaErros.Add(Erro);
+            }
+
+            if (!rx.IsMatchNumeros(model.Kw.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de formato: Só é permitido números.";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Kw";
 
                 ListaErros.Add(Erro);
             }
             //----------- Validação do custo -----------
-            if (model.Custo == 0000000 || !rx.IsMatchNumeros(model.Custo.ToString()))
+            if (model.Custo == 0000000)
             {
                 Model.RegistroErro Erro = new Model.RegistroErro();
 
-                Erro.Erro = "Inválido";
+                Erro.Erro = "Não pode ser zero.";
                 Erro.Linha = model.Posicao;
-                Erro.Campo = "Campo Custo";
+                Erro.Campo = "Campo: Custo";
+
+                ListaErros.Add(Erro);
+            }
+
+            if (!rx.IsMatchNumeros(model.Custo.ToString()))
+            {
+                Model.RegistroErro Erro = new Model.RegistroErro();
+
+                Erro.Erro = "Erro de formato: Só é permitido números.";
+                Erro.Linha = model.Posicao;
+                Erro.Campo = "Campo: Custo";
 
                 ListaErros.Add(Erro);
             }

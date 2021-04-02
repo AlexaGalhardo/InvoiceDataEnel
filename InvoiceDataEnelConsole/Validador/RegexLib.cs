@@ -7,7 +7,7 @@ namespace DadosFaturaEnelConsole.Validador
 {
     class RegexLib
     {
-        public bool IsMatchNumeros (string resp)
+        public bool IsMatchNumeros(string resp)
         {
             string er = @"^\d+$";
             return Regex.IsMatch(resp, er);
@@ -25,6 +25,11 @@ namespace DadosFaturaEnelConsole.Validador
             return Regex.IsMatch(resp, er);
         }
 
+        public bool IsMatchNumerosELetras(string resp)
+        {
+            string er = @"^[A-Za-z0-9]\d+[A-Za-z0-9]$";
+            return Regex.IsMatch(resp, er);
+        }
 
     }
 }

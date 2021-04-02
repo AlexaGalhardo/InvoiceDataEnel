@@ -13,7 +13,7 @@ namespace DadosFaturaEnelConsole.Model
 
         public string ShowError()
         {
-            string erro = Linha + " "+ Erro + " " + Campo;
+            string erro = Erro + " no " + Campo + " na " + Linha;
             return erro;
         }
     }
